@@ -1,0 +1,49 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/report/report",
+    "pages/market/market",
+    "pages/profile/profile"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#4CAF50",
+    "navigationBarTitleText": "乡村同行",
+    "navigationBarTextStyle": "white",
+    "backgroundColor": "#f5f5f5"
+  },
+  "tabBar": {
+    "color": "#666666",
+    "selectedColor": "#4CAF50",
+    "backgroundColor": "#ffffff",
+    "borderStyle": "black",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页",
+        "iconPath": "images/tab-home.png",
+        "selectedIconPath": "images/tab-home-active.png"
+      },
+      {
+        "pagePath": "pages/report/report",
+        "text": "随手拍",
+        "iconPath": "images/tab-report.png",
+        "selectedIconPath": "images/tab-report-active.png"
+      },
+      {
+        "pagePath": "pages/market/market",
+        "text": "赶集",
+        "iconPath": "images/tab-market.png",
+        "selectedIconPath": "images/tab-market-active.png"
+      },
+      {
+        "pagePath": "pages/profile/profile",
+        "text": "找干部",
+        "iconPath": "images/tab-profile.png",
+        "selectedIconPath": "images/tab-profile-active.png"
+      }
+    ]
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json"
+}

@@ -1,0 +1,11 @@
+<!--pages/profile/profile.wxml-->
+<view class="page-container">
+  
+  <view class="placeholder-container">
+    <view class="placeholder-icon">👥</view>
+    <text class="placeholder-title">找干部</text>
+    <text class="placeholder-desc">联系村干部，反馈问题</text>
+    <text class="placeholder-tip">功能开发中，敬请期待...</text>
+  </view>
+
+</view>

@@ -1,0 +1,134 @@
+<!--pages/report/report.wxml-->
+<view class="page-container">
+  <!-- 页面标题 -->
+  <view class="page-title">
+    <text class="text-xlarge text-bold">发现问题，随手上报</text>
+    <text class="text-secondary mt-10">让我们一起建设美丽乡村</text>
+  </view>
+
+  <!-- 表单区域 -->
+  <view class="form-container">
+    
+    <!-- 问题类型选择 -->
+    <view class="form-item">
+      <text class="form-label">问题类型 *</text>
+      <picker 
+        mode="selector" 
+        range="{{issueTypes}}" 
+        value="{{typeIndex}}"
+        bindchange="onTypeChange"
+        class="picker-wrapper">
+        <view class="picker-display">
+          <text class="{{typeIndex >= 0 ? 'text-primary' : 'text-secondary'}}">
+            {{typeIndex >= 0 ? issueTypes[typeIndex] : '请选择问题类型'}}
+          </text>
+          <text class="picker-arrow">▼</text>
+        </view>
+      </picker>
+    </view>
+
+    <!-- 照片上传 -->
+    <view class="form-item">
+      <text class="form-label">上传照片</text>
+      <view class="image-upload-container">
+        <view class="image-list">
+          <block wx:for="{{imageList}}" wx:key="index">
+            <view class="image-item">
+              <image src="{{item}}" mode="aspectFill" class="uploaded-image"></image>
+              <view class="image-delete" bindtap="deleteImage" data-index="{{index}}">
+                <text>✕</text>
+              </view>
+            </view>
+          </block>
+          
+          <!-- 添加照片按钮 -->
+          <view 
+            class="image-add-btn" 
+            bindtap="chooseImage"
+            wx:if="{{imageList.length < maxImageCount}}">
+            <text class="add-icon">+</text>
+            <text class="add-text">添加照片</text>
+          </view>
+        </view>
+        <view class="image-tip">
+          <text class="text-small text-secondary">已上传 {{imageList.length}}/{{maxImageCount}} 张</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- 语音录入 -->
+    <view class="form-item">
+      <text class="form-label">语音说明</text>
+      <view class="voice-container">
+        <button 
+          class="voice-btn {{isRecording ? 'recording' : ''}}" 
+          bindtouchstart="startRecord"
+          bindtouchend="stopRecord"
+          bindtouchcancel="cancelRecord">
+          <text class="voice-icon">🎤</text>
+          <text class="voice-text">{{voiceButtonText}}</text>
+        </button>
+        <view class="voice-tip" wx:if="voiceRecorded">
+          <text class="text-success">✓ 语音已录入</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- 位置选择 -->
+    <view class="form-item">
+      <text class="form-label">问题位置</text>
+      <view class="location-container" bindtap="chooseLocation">
+        <view class="location-display">
+          <text class="location-icon">📍</text>
+          <text class="{{location ? 'text-primary' : 'text-secondary'}}">
+            {{location ? location.name : '点击选择位置'}}
+          </text>
+        </view>
+        <view class="location-detail" wx:if="location">
+          <text class="text-small text-secondary">{{location.address}}</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- 文字描述（可选） -->
+    <view class="form-item">
+      <text class="form-label">补充说明（可选）</text>
+      <textarea 
+        class="form-textarea"
+        placeholder="请详细描述问题情况..."
+        placeholder-class="placeholder-text"
+        maxlength="500"
+        value="{{description}}"
+        bindinput="onDescriptionInput"
+        auto-height>
+      </textarea>
+      <view class="char-count">
+        <text class="text-small text-secondary">{{description.length}}/500</text>
+      </view>
+    </view>
+
+    <!-- 提交按钮 -->
+    <view class="submit-container">
+      <button 
+        class="btn btn-primary btn-large btn-block submit-btn"
+        bindtap="submitIssue"
+        disabled="{{submitting}}">
+        {{submitting ? '提交中...' : '提交问题'}}
+      </button>
+    </view>
+
+  </view>
+
+  <!-- 温馨提示 -->
+  <view class="tips-container">
+    <view class="tips-title">
+      <text class="text-medium text-bold">💡 温馨提示</text>
+    </view>
+    <view class="tips-content">
+      <text class="text-secondary">• 上报问题可获得积分奖励</text>
+      <text class="text-secondary">• 请如实描述问题情况</text>
+      <text class="text-secondary">• 我们会尽快处理您的反馈</text>
+    </view>
+  </view>
+
+</view>

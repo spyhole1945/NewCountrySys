@@ -1,0 +1,11 @@
+<!--pages/market/market.wxml-->
+<view class="page-container">
+  
+  <view class="placeholder-container">
+    <view class="placeholder-icon">🛒</view>
+    <text class="placeholder-title">赶集功能</text>
+    <text class="placeholder-desc">农产品买卖交易平台</text>
+    <text class="placeholder-tip">功能开发中，敬请期待...</text>
+  </view>
+
+</view>

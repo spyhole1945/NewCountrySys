@@ -1,0 +1,58 @@
+<!--pages/index/index.wxml-->
+<view class="page-container">
+  
+  <!-- 欢迎横幅 -->
+  <view class="welcome-banner">
+    <text class="banner-title">欢迎使用乡村同行</text>
+    <text class="banner-subtitle">共建美丽新农村</text>
+  </view>
+
+  <!-- 功能卡片 -->
+  <view class="feature-cards">
+    
+    <!-- 随手拍 -->
+    <view class="feature-card" bindtap="goToReport">
+      <view class="card-icon">📸</view>
+      <view class="card-content">
+        <text class="card-title">随手拍</text>
+        <text class="card-desc">发现问题，随时上报</text>
+      </view>
+      <view class="card-arrow">→</view>
+    </view>
+
+    <!-- 赶集 -->
+    <view class="feature-card" bindtap="goToMarket">
+      <view class="card-icon">🛒</view>
+      <view class="card-content">
+        <text class="card-title">赶集</text>
+        <text class="card-desc">农产品买卖交易</text>
+      </view>
+      <view class="card-arrow">→</view>
+    </view>
+
+    <!-- 找干部 -->
+    <view class="feature-card" bindtap="goToProfile">
+      <view class="card-icon">👥</view>
+      <view class="card-content">
+        <text class="card-title">找干部</text>
+        <text class="card-desc">联系村干部</text>
+      </view>
+      <view class="card-arrow">→</view>
+    </view>
+
+  </view>
+
+  <!-- 公告栏 -->
+  <view class="notice-section">
+    <view class="section-title">
+      <text class="text-large text-bold">📢 村务公告</text>
+    </view>
+    <view class="notice-list">
+      <view class="notice-item">
+        <text class="notice-title">欢迎使用乡村同行平台</text>
+        <text class="notice-time">2025-12-06</text>
+      </view>
+    </view>
+  </view>
+
+</view>
