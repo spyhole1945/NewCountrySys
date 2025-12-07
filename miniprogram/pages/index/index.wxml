@@ -20,12 +20,12 @@
       <view class="card-arrow">→</view>
     </view>
 
-    <!-- 赶集 -->
-    <view class="feature-card" bindtap="goToMarket">
-      <view class="card-icon">🛒</view>
+    <!-- 村友圈 -->
+    <view class="feature-card" bindtap="goToSocial">
+      <view class="card-icon">💬</view>
       <view class="card-content">
-        <text class="card-title">赶集</text>
-        <text class="card-desc">农产品买卖交易</text>
+        <text class="card-title">村友圈</text>
+        <text class="card-desc">村民互动交流平台</text>
       </view>
       <view class="card-arrow">→</view>
     </view>

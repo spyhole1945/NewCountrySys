@@ -1,38 +1,188 @@
 /* pages/profile/profile.wxss */
 
-.placeholder-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  min-height: 80vh;
-  padding: 60rpx;
-  text-align: center;
+.profile-container {
+  min-height: 100vh;
+  background-color: #f5f5f5;
+  padding-bottom: 40rpx;
 }
 
-.placeholder-icon {
-  font-size: 120px;
-  margin-bottom: 40rpx;
-  opacity: 0.6;
-}
-
-.placeholder-title {
-  font-size: 24px;
-  font-weight: bold;
-  color: var(--text-primary);
+/* 用户卡片 */
+.user-card {
+  background: linear-gradient(135deg, #4CAF50, #66BB6A);
+  padding: 40rpx 32rpx;
   margin-bottom: 20rpx;
 }
 
-.placeholder-desc {
-  font-size: 16px;
-  color: var(--text-secondary);
-  margin-bottom: 40rpx;
+.user-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 32rpx;
 }
 
-.placeholder-tip {
-  font-size: 14px;
-  color: var(--text-disabled);
-  padding: 20rpx 40rpx;
-  background-color: #f5f5f5;
-  border-radius: 8rpx;
+.avatar {
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 60rpx;
+  border: 4rpx solid rgba(255,255,255,0.3);
+  margin-right: 24rpx;
+}
+
+.user-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.username {
+  font-size: 36rpx;
+  color: #fff;
+  font-weight: bold;
+  margin-bottom: 12rpx;
+}
+
+.phone {
+  font-size: 26rpx;
+  color: rgba(255,255,255,0.8);
+}
+
+/* 积分区域 */
+.points-section {
+  background-color: rgba(255,255,255,0.15);
+  border-radius: 16rpx;
+  padding: 32rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.points-badge {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.coin-icon {
+  width: 60rpx;
+  height: 60rpx;
+  margin-bottom: 12rpx;
+}
+
+.points-value {
+  font-size: 48rpx;
+  color: #fff;
+  font-weight: bold;
+  margin-bottom: 8rpx;
+}
+
+.points-label {
+  font-size: 24rpx;
+  color: rgba(255,255,255,0.8);
+}
+
+.points-btn {
+  display: flex;
+  align-items: center;
+  padding: 16rpx 32rpx;
+  background-color: rgba(255,255,255,0.2);
+  border-radius: 40rpx;
+  color: #fff;
+  font-size: 28rpx;
+}
+
+.arrow-icon {
+  width: 24rpx;
+  height: 24rpx;
+  margin-left: 8rpx;
+}
+
+/* 功能菜单 */
+.menu-section {
+  background-color: #fff;
+  border-radius: 16rpx;
+  margin: 0 20rpx 20rpx;
+  overflow: hidden;
+}
+
+.menu-item {
+  display: flex;
+  align-items: center;
+  padding: 32rpx;
+  border-bottom: 1rpx solid #f0f0f0;
+}
+
+.menu-item:last-child {
+  border-bottom: none;
+}
+
+.menu-icon {
+  width: 48rpx;
+  height: 48rpx;
+  margin-right: 24rpx;
+}
+
+.menu-text {
+  flex: 1;
+  font-size: 30rpx;
+  color: #333;
+}
+
+/* 联系干部 */
+.contact-section {
+  background-color: #fff;
+  border-radius: 16rpx;
+  margin: 0 20rpx;
+  padding: 32rpx;
+}
+
+.section-title {
+  font-size: 32rpx;
+  color: #333;
+  font-weight: bold;
+  margin-bottom: 24rpx;
+}
+
+.contact-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 24rpx 0;
+  border-bottom: 1rpx solid #f0f0f0;
+}
+
+.contact-item:last-child {
+  border-bottom: none;
+}
+
+.official-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.official-name {
+  font-size: 30rpx;
+  color: #333;
+  font-weight: bold;
+  margin-bottom: 8rpx;
+}
+
+.official-role {
+  font-size: 26rpx;
+  color: #999;
+}
+
+.contact-btn {
+  display: flex;
+  align-items: center;
+  padding: 12rpx 24rpx;
+  background-color: #4CAF50;
+  color: #fff;
+  border-radius: 40rpx;
+  font-size: 26rpx;
+}
+
+.phone-icon {
+  width: 32rpx;
+  height: 32rpx;
+  margin-right: 8rpx;
 }

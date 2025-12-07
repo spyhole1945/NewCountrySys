@@ -1,0 +1,117 @@
+/* pages/qa/index.wxss */
+.container {
+  background-color: #f5f5f5;
+  min-height: 100vh;
+  padding-bottom: 20rpx;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  padding: 20rpx 30rpx;
+  background-color: #fff;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.search-bar {
+  flex: 1;
+  background-color: #f0f0f0;
+  border-radius: 30rpx;
+  padding: 10rpx 20rpx;
+  display: flex;
+  align-items: center;
+  margin-right: 20rpx;
+}
+
+.search-bar icon {
+  margin-right: 10rpx;
+}
+
+.search-bar input {
+  flex: 1;
+  font-size: 28rpx;
+}
+
+.ask-btn {
+  background-color: #4CAF50;
+  color: white;
+  padding: 10rpx 30rpx;
+  border-radius: 30rpx;
+  font-size: 28rpx;
+}
+
+.question-list {
+  padding: 20rpx;
+}
+
+.question-item {
+  background-color: white;
+  border-radius: 12rpx;
+  padding: 30rpx;
+  margin-bottom: 20rpx;
+}
+
+.q-title {
+  font-size: 32rpx;
+  font-weight: bold;
+  margin-bottom: 10rpx;
+  color: #333;
+}
+
+.q-content {
+  font-size: 28rpx;
+  color: #666;
+  margin-bottom: 20rpx;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+}
+
+.q-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 24rpx;
+  color: #999;
+}
+
+.author-info {
+  display: flex;
+  align-items: center;
+}
+
+.avatar {
+  width: 40rpx;
+  height: 40rpx;
+  border-radius: 50%;
+  margin-right: 10rpx;
+}
+
+.stats text {
+  margin-left: 20rpx;
+}
+
+.status {
+  padding: 4rpx 10rpx;
+  border-radius: 4rpx;
+}
+
+.status.solved {
+  background-color: #e8f5e9;
+  color: #4CAF50;
+}
+
+.status.unsolved {
+  background-color: #fff3e0;
+  color: #ff9800;
+}
+
+.loading {
+  text-align: center;
+  padding: 20rpx;
+  color: #999;
+  font-size: 24rpx;
+}

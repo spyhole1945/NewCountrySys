@@ -3,12 +3,13 @@
 
 const config = {
     // API基础URL - 开发环境
-    // 生产环境需要修改为实际的服务器地址
+    // 提示: 真机预览请使用局域网IP (当前: http://192.168.0.107:8080)
+    // apiBaseUrl: 'http://localhost:8080', 
     apiBaseUrl: 'http://localhost:8080',
 
     // 图片上传相关配置
     uploadConfig: {
-        // 图片上传接口（暂时使用mock）
+        // 图片上传接口
         uploadUrl: 'http://localhost:8080/api/upload/image',
         // 允许的图片格式
         allowedImageTypes: ['jpg', 'jpeg', 'png'],

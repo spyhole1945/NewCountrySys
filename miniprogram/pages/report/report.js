@@ -275,16 +275,19 @@ Page({
         api.reportIssue(issueData)
             .then(res => {
                 console.log('提交成功', res);
+
+                // 显示积分奖励提示
+                const points = res.data?.pointsAwarded || 5;
                 wx.showToast({
-                    title: '提交成功！',
+                    title: `提交成功！感谢反馈，积分 +${points}`,
                     icon: 'success',
-                    duration: 2000
+                    duration: 2500
                 });
 
                 // 重置表单
                 setTimeout(() => {
                     this.resetForm();
-                }, 2000);
+                }, 2500);
             })
             .catch(err => {
                 console.error('提交失败', err);

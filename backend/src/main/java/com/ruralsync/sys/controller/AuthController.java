@@ -5,30 +5,46 @@ import com.ruralsync.sys.dto.LoginDTO;
 import com.ruralsync.sys.dto.LoginResponseDTO;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
+import java.util.Map;
+
 @RestController
 @RequestMapping("/api/auth")
 public class AuthController {
 
     @PostMapping("/login")
-    public Result<LoginResponseDTO> login(@RequestBody LoginDTO loginDTO) {
-        // TODO: 实现真实的认证逻辑
-        // 1. 验证用户名密码
-        // 2. 生成JWT token
-        // 3. 返回token和用户信息
+    public Result<Map<String, Object>> login(@RequestBody Map<String, String> loginData) {
+        String username = loginData.get("username");
+        String password = loginData.get("password");
 
-        // 临时mock实现
-        if ("admin".equals(loginDTO.getUsername()) && "admin123".equals(loginDTO.getPassword())) {
-            LoginResponseDTO.UserInfoDTO userInfo = new LoginResponseDTO.UserInfoDTO(
-                    1L,
-                    "admin",
-                    "ADMIN",
-                    "系统管理员");
-
-            // 生成简单的mock token (实际应使用JWT)
+        // TODO: 实际项目中应该查询数据库验证用户
+        // 这里使用mock数据
+        if ("admin".equals(username) && "admin123".equals(password)) {
+            // 生成token (mock)
             String token = "mock-jwt-token-" + System.currentTimeMillis();
 
-            LoginResponseDTO response = new LoginResponseDTO(token, userInfo);
-            return Result.success(response);
+            // 用户信息
+            Map<String, Object> userInfo = new HashMap<>();
+            userInfo.put("id", 1L);
+            userInfo.put("username", "admin");
+            userInfo.put("nickname", "系统管理员");
+            userInfo.put("role", "ADMIN");
+
+            Map<String, Object> result = new HashMap<>();
+            result.put("token", token);
+            result.put("userInfo", userInfo);
+
+            return Result.success(result);
+        }
+
+        // 模拟OFFICIAL角色登录尝试
+        if ("official".equals(username) && "official123".equals(password)) {
+            return Result.error("村务人员请使用微信小程序登录");
+        }
+
+        // 模拟VILLAGER角色登录尝试
+        if ("villager".equals(username)) {
+            return Result.error("村民请使用微信小程序登录");
         }
 
         return Result.error("用户名或密码错误");

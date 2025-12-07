@@ -1,0 +1,49 @@
+<!--pages/qa/detail.wxml-->
+<view class="container">
+  <!-- 问题详情 -->
+  <view class="question-card">
+    <view class="q-header">
+      <view class="author-info">
+        <image src="{{question.avatar}}" class="avatar"></image>
+        <view class="author-meta">
+          <text class="author-name">{{question.author}}</text>
+          <text class="create-time">{{question.createTime}}</text>
+        </view>
+      </view>
+    </view>
+    <view class="q-title">{{question.title}}</view>
+    <view class="q-content">{{question.content}}</view>
+    <view class="q-images" wx:if="{{question.images.length > 0}}">
+      <block wx:for="{{question.images}}" wx:key="*this">
+        <image src="{{item}}" mode="widthFix" class="q-image"></image>
+      </block>
+    </view>
+  </view>
+
+  <!-- 回答列表 -->
+  <view class="answers-section">
+    <view class="section-title">全部回答 ({{answers.length}})</view>
+    <block wx:for="{{answers}}" wx:key="id">
+      <view class="answer-item">
+        <view class="answer-header">
+          <view class="author-info">
+            <image src="{{item.avatar}}" class="avatar"></image>
+            <text class="author-name">{{item.author}}</text>
+          </view>
+          <view class="answer-meta">
+            <text wx:if="{{item.accepted}}" class="accepted-tag">已采纳</text>
+            <text class="like-count">👍 {{item.likeCount}}</text>
+          </view>
+        </view>
+        <view class="answer-content">{{item.content}}</view>
+        <view class="answer-time">{{item.createTime}}</view>
+      </view>
+    </block>
+  </view>
+
+  <!-- 底部输入框 -->
+  <view class="footer-input">
+    <input placeholder="我来帮他解答..." value="{{replyContent}}" bindinput="onInput" confirm-type="send" bindconfirm="submitAnswer"/>
+    <button class="send-btn" bindtap="submitAnswer" disabled="{{!replyContent}}">发送</button>
+  </view>
+</view>

@@ -9,17 +9,22 @@ import org.springframework.web.bind.annotation.*;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/admin/users")
 public class AdminUserController {
 
+    /**
+     * 获取用户列表
+     * 权限要求: 仅ADMIN角色可访问
+     * TODO: 添加 @PreAuthorize("hasRole('ADMIN')") 注解
+     */
     @GetMapping
-    public Result<PageResult<UserListDTO>> getUserList(
+    public Result<PageResult<UserListDTO>> getUsers(
+            @RequestParam(defaultValue = "") String search,
             @RequestParam(defaultValue = "1") Integer page,
-            @RequestParam(defaultValue = "10") Integer size,
-            @RequestParam(required = false) String role,
-            @RequestParam(required = false) String keyword) {
+            @RequestParam(defaultValue = "10") Integer size) {
 
         // TODO: 实现真实的用户查询逻辑
         List<UserListDTO> records = new ArrayList<>();

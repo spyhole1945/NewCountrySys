@@ -1,0 +1,75 @@
+<view class="social-container">
+  <scroll-view class="feed-list" scroll-y bindscrolltolower="loadMore">
+    <view wx:if="{{loading && posts.length === 0}}" class="loading">加载中...</view>
+    
+    <view wx:elif="{{posts.length === 0}}" class="empty">
+      <image src="/images/empty.png" class="empty-icon" mode="aspectFit"></image>
+      <text class="empty-text">还没有动态，快来发布第一条吧~</text>
+    </view>
+
+    <view wx:else class="post-list">
+      <!-- 动态卡片 -->
+      <view wx:for="{{posts}}" wx:key="id" class="post-item">
+        <!-- 用户信息 -->
+        <view class="post-header">
+          <image class="avatar" src="{{item.userAvatar || '/images/default-avatar.png'}}" mode="aspectFill"></image>
+          <view class="user-info">
+            <text class="username">{{item.userName}}</text>
+            <text class="time">{{item.createTime}}</text>
+          </view>
+        </view>
+
+        <!-- 文本内容 -->
+        <view class="post-content">
+          <text class="content-text">{{item.content}}</text>
+        </view>
+
+        <!-- 九宫格图片 -->
+        <view wx:if="{{item.imageUrls && item.imageUrls.length > 0}}" class="post-images {{item.imageUrls.length === 1 ? 'single' : item.imageUrls.length === 4 ? 'four' : 'grid'}}">
+          <image 
+            wx:for="{{item.imageUrls}}" 
+            wx:key="index"
+            wx:for-item="img"
+            src="{{img}}" 
+            class="post-image"
+            mode="{{item.imageUrls.length === 1 ? 'aspectFit' : 'aspectFill'}}"
+            bindtap="previewImage"
+            data-urls="{{item.imageUrls}}"
+            data-current="{{img}}"
+          ></image>
+        </view>
+
+        <!-- 互动区域 -->
+        <view class="post-actions">
+          <view class="action-btn" bindtap="toggleLike" data-id="{{item.id}}" data-liked="{{item.liked}}">
+            <image 
+              src="{{item.liked ? '/images/like-active.png' : '/images/like.png'}}" 
+              class="action-icon"
+            ></image>
+            <text class="action-text {{item.liked ? 'active' : ''}}">{{item.likeCount || '点赞'}}</text>
+          </view>
+          
+          <view class="action-btn" bindtap="showCommentInput" data-id="{{item.id}}">
+            <image src="/images/comment.png" class="action-icon"></image>
+            <text class="action-text">{{item.commentCount || '评论'}}</text>
+          </view>
+        </view>
+
+        <!-- 评论列表 -->
+        <view wx:if="{{item.comments && item.comments.length > 0}}" class="comments">
+          <view wx:for="{{item.comments}}" wx:key="index" wx:for-item="comment" class="comment-item">
+            <text class="comment-user">{{comment.userName}}: </text>
+            <text class="comment-text">{{comment.content}}</text>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <view wx:if="{{!hasMore && posts.length > 0}}" class="no-more">没有更多了</view>
+  </scroll-view>
+
+  <!-- 发布按钮 -->
+  <view class="publish-btn" bindtap="goPublish">
+    <image src="/images/edit.png" class="edit-icon"></image>
+  </view>
+</view>

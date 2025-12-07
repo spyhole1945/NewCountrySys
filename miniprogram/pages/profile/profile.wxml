@@ -1,11 +1,69 @@
-<!--pages/profile/profile.wxml-->
-<view class="page-container">
-  
-  <view class="placeholder-container">
-    <view class="placeholder-icon">👥</view>
-    <text class="placeholder-title">找干部</text>
-    <text class="placeholder-desc">联系村干部，反馈问题</text>
-    <text class="placeholder-tip">功能开发中，敬请期待...</text>
+<view class="profile-container">
+  <!-- 用户信息卡片 -->
+  <view class="user-card">
+    <view class="user-header">
+      <image class="avatar" src="{{userInfo.avatar || '/images/default-avatar.png'}}" mode="aspectFill"></image>
+      <view class="user-info">
+        <text class="username">{{userInfo.nickname || '村民'}}</text>
+        <text class="phone">{{userInfo.phone || '未绑定手机'}}</text>
+      </view>
+    </view>
+    
+    <!-- 积分显示 -->
+    <view class="points-section">
+      <view class="points-badge">
+        <image src="/images/coin.png" class="coin-icon"></image>
+        <text class="points-value">{{userInfo.points || 0}}</text>
+        <text class="points-label">当前积分</text>
+      </view>
+      <view class="points-btn" bindtap="goPointsLog">
+        <text>积分明细</text>
+        <image src="/images/arrow-right.png" class="arrow-icon"></image>
+      </view>
+    </view>
   </view>
 
+  <!-- 功能菜单 -->
+  <view class="menu-section">
+    <view class="menu-item" bindtap="goMyReports">
+      <image src="/images/menu-report.png" class="menu-icon"></image>
+      <text class="menu-text">我的上报</text>
+      <image src="/images/arrow-right.png" class="arrow-icon"></image>
+    </view>
+    
+    <view class="menu-item" bindtap="goMyMarket">
+      <image src="/images/menu-market.png" class="menu-icon"></image>
+      <text class="menu-text">我的集市</text>
+      <image src="/images/arrow-right.png" class="arrow-icon"></image>
+    </view>
+    
+    <view class="menu-item" bindtap="goMyPosts">
+      <image src="/images/menu-social.png" class="menu-icon"></image>
+      <text class="menu-text">我的动态</text>
+      <image src="/images/arrow-right.png" class="arrow-icon"></image>
+    </view>
+    
+    <view class="menu-item" bindtap="goSettings">
+      <image src="/images/menu-settings.png" class="menu-icon"></image>
+      <text class="menu-text">设置</text>
+      <image src="/images/arrow-right.png" class="arrow-icon"></image>
+    </view>
+  </view>
+
+  <!-- 联系干部 -->
+  <view class="contact-section">
+    <view class="section-title">联系村干部</view>
+    <view class="contact-list">
+      <view class="contact-item" wx:for="{{officials}}" wx:key="id">
+        <view class="official-info">
+          <text class="official-name">{{item.name}}</text>
+          <text class="official-role">{{item.role}}</text>
+        </view>
+        <view class="contact-btn" bindtap="callOfficial" data-phone="{{item.phone}}">
+          <image src="/images/phone-green.png" class="phone-icon"></image>
+          <text>联系</text>
+        </view>
+      </view>
+    </view>
+  </view>
 </view>

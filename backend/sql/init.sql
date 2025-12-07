@@ -88,20 +88,48 @@ CREATE TABLE `market_items` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='Marketplace Items';
 
 -- ----------------------------
--- Table structure for community_posts
+-- Table structure for social_posts
 -- ----------------------------
-DROP TABLE IF EXISTS `community_posts`;
-CREATE TABLE `community_posts` (
+DROP TABLE IF EXISTS `social_posts`;
+CREATE TABLE `social_posts` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `user_id` bigint(20) NOT NULL,
   `content` text,
-  `media_urls` text COMMENT 'JSON array of images',
-  `likes` int(11) DEFAULT 0,
-  `comments_count` int(11) DEFAULT 0,
+  `images` text COMMENT 'JSON array of images',
+  `like_count` int(11) DEFAULT 0,
+  `comment_count` int(11) DEFAULT 0,
   `create_time` datetime DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
   KEY `idx_user` (`user_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='Community Posts';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='Social Circle Posts';
+
+-- ----------------------------
+-- Table structure for social_comments
+-- ----------------------------
+DROP TABLE IF EXISTS `social_comments`;
+CREATE TABLE `social_comments` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `post_id` bigint(20) NOT NULL,
+  `user_id` bigint(20) NOT NULL,
+  `content` text,
+  `create_time` datetime DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  KEY `idx_post` (`post_id`),
+  KEY `idx_user` (`user_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='Social Circle Comments';
+
+-- ----------------------------
+-- Table structure for social_likes
+-- ----------------------------
+DROP TABLE IF EXISTS `social_likes`;
+CREATE TABLE `social_likes` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `post_id` bigint(20) NOT NULL,
+  `user_id` bigint(20) NOT NULL,
+  `create_time` datetime DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `uk_post_user` (`post_id`, `user_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='Social Circle Likes';
 
 -- ----------------------------
 -- Table structure for points_records
@@ -130,5 +158,40 @@ CREATE TABLE `officials` (
   `display_order` int(11) DEFAULT 0,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='Officials Directory';
+
+-- ----------------------------
+-- Table structure for qa_questions
+-- ----------------------------
+DROP TABLE IF EXISTS `qa_questions`;
+CREATE TABLE `qa_questions` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `user_id` bigint(20) NOT NULL,
+  `title` varchar(100) NOT NULL,
+  `content` text,
+  `images` text COMMENT 'JSON array of image URLs',
+  `view_count` int(11) DEFAULT 0,
+  `answer_count` int(11) DEFAULT 0,
+  `solved` tinyint(1) DEFAULT 0,
+  `create_time` datetime DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  KEY `idx_user` (`user_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='Agri-tech Questions';
+
+-- ----------------------------
+-- Table structure for qa_answers
+-- ----------------------------
+DROP TABLE IF EXISTS `qa_answers`;
+CREATE TABLE `qa_answers` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `question_id` bigint(20) NOT NULL,
+  `user_id` bigint(20) NOT NULL,
+  `content` text,
+  `accepted` tinyint(1) DEFAULT 0,
+  `likes` int(11) DEFAULT 0,
+  `create_time` datetime DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  KEY `idx_question` (`question_id`),
+  KEY `idx_user` (`user_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='Agri-tech Answers';
 
 SET FOREIGN_KEY_CHECKS = 1;

@@ -1,0 +1,28 @@
+<view class="points-log-container">
+  <scroll-view class="log-list" scroll-y bindscrolltolower="loadMore">
+    <view wx:if="{{loading && logs.length === 0}}" class="loading">加载中...</view>
+    
+    <view wx:elif="{{logs.length === 0}}" class="empty">
+      <image src="/images/empty.png" class="empty-icon" mode="aspectFit"></image>
+      <text class="empty-text">暂无积分记录</text>
+    </view>
+
+    <view wx:else class="timeline">
+      <view wx:for="{{logs}}" wx:key="id" class="log-item">
+        <view class="timeline-dot"></view>
+        <view class="log-content">
+          <view class="log-header">
+            <text class="log-title">{{item.title}}</text>
+            <text class="points {{item.points > 0 ? 'positive' : 'negative'}}">
+              {{item.points > 0 ? '+' : ''}}{{item.points}}
+            </text>
+          </view>
+          <text class="log-desc">{{item.description}}</text>
+          <text class="log-time">{{item.createTime}}</text>
+        </view>
+      </view>
+    </view>
+
+    <view wx:if="{{!hasMore && logs.length > 0}}" class="no-more">没有更多了</view>
+  </scroll-view>
+</view>

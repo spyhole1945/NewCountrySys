@@ -19,10 +19,15 @@ public class IssueController {
     private IssueService issueService;
 
     @PostMapping
-    public Result<Void> reportIssue(@RequestBody IssueDTO issueDTO) {
+    public Result<java.util.Map<String, Object>> reportIssue(@RequestBody IssueDTO issueDTO) {
         Long userId = getUserId();
         issueService.reportIssue(issueDTO, userId);
-        return Result.success(null);
+
+        // 返回积分奖励
+        java.util.Map<String, Object> result = new java.util.HashMap<>();
+        result.put("pointsAwarded", 5); // 问题上报奖励5积分
+
+        return Result.success(result);
     }
 
     @GetMapping("/{id}/timeline")

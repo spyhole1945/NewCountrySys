@@ -2,8 +2,15 @@
   "pages": [
     "pages/index/index",
     "pages/report/report",
-    "pages/market/market",
-    "pages/profile/profile"
+    "pages/market/index",
+    "pages/market/create",
+    "pages/social/index",
+    "pages/social/create",
+    "pages/qa/index",
+    "pages/qa/detail",
+    "pages/qa/create",
+    "pages/profile/profile",
+    "pages/profile/points_log"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -25,20 +32,20 @@
         "selectedIconPath": "images/tab-home-active.png"
       },
       {
-        "pagePath": "pages/report/report",
-        "text": "随手拍",
-        "iconPath": "images/tab-report.png",
-        "selectedIconPath": "images/tab-report-active.png"
+        "pagePath": "pages/qa/index",
+        "text": "问大仙",
+        "iconPath": "images/tab-qa.png",
+        "selectedIconPath": "images/tab-qa-active.png"
       },
       {
-        "pagePath": "pages/market/market",
+        "pagePath": "pages/market/index",
         "text": "赶集",
         "iconPath": "images/tab-market.png",
         "selectedIconPath": "images/tab-market-active.png"
       },
       {
         "pagePath": "pages/profile/profile",
-        "text": "找干部",
+        "text": "我的",
         "iconPath": "images/tab-profile.png",
         "selectedIconPath": "images/tab-profile-active.png"
       }

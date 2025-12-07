@@ -1,0 +1,75 @@
+<view class="market-container">
+  <!-- 分类Tab -->
+  <view class="category-tabs">
+    <view 
+      wx:for="{{categories}}" 
+      wx:key="id"
+      class="tab-item {{currentCategory === item.id ? 'active' : ''}}"
+      bindtap="switchCategory"
+      data-id="{{item.id}}"
+    >
+      {{item.name}}
+    </view>
+  </view>
+
+  <!-- 集市列表 -->
+  <scroll-view class="market-list" scroll-y>
+    <view wx:if="{{loading}}" class="loading">加载中...</view>
+    
+    <view wx:elif="{{items.length === 0}}" class="empty">
+      <image src="/images/empty.png" class="empty-icon" mode="aspectFit"></image>
+      <text class="empty-text">暂无{{currentCategoryName}}信息</text>
+    </view>
+
+    <view wx:else class="item-list">
+      <view 
+        wx:for="{{items}}" 
+        wx:key="id"
+        class="market-item"
+        bindtap="viewDetail"
+        data-id="{{item.id}}"
+      >
+        <!-- 发布者信息 -->
+        <view class="item-header">
+          <image class="avatar" src="{{item.userAvatar || '/images/default-avatar.png'}}" mode="aspectFill"></image>
+          <view class="user-info">
+            <text class="username">{{item.userName}}</text>
+            <text class="time">{{item.createTime}}</text>
+          </view>
+        </view>
+
+        <!-- 内容 -->
+        <view class="item-content">
+          <text class="title">{{item.title}}</text>
+          <text class="description">{{item.description}}</text>
+          
+          <!-- 图片 -->
+          <view wx:if="{{item.images && item.images.length > 0}}" class="images">
+            <image 
+              wx:for="{{item.images}}" 
+              wx:key="index"
+              wx:for-item="img"
+              src="{{img}}" 
+              class="item-image"
+              mode="aspectFill"
+            ></image>
+          </view>
+        </view>
+
+        <!-- 底部信息 -->
+        <view class="item-footer">
+          <view class="price">¥{{item.price || '面议'}}</view>
+          <view class="contact">
+            <image src="/images/phone.png" class="icon"></image>
+            <text>联系</text>
+          </view>
+        </view>
+      </view>
+    </view>
+  </scroll-view>
+
+  <!-- 发布按钮 -->
+  <view class="publish-btn" bindtap="goPublish">
+    <image src="/images/add.png" class="add-icon"></image>
+  </view>
+</view>

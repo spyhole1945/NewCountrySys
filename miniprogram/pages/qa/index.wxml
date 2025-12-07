@@ -1,0 +1,34 @@
+<!--pages/qa/index.wxml-->
+<view class="container">
+  <!-- 顶部搜索/提问栏 -->
+  <view class="header">
+    <view class="search-bar">
+      <icon type="search" size="14"></icon>
+      <input placeholder="搜索问题" confirm-type="search" />
+    </view>
+    <view class="ask-btn" bindtap="goToAsk">提问</view>
+  </view>
+
+  <!-- 问题列表 -->
+  <view class="question-list">
+    <block wx:for="{{questions}}" wx:key="id">
+      <view class="question-item" bindtap="goToDetail" data-id="{{item.id}}">
+        <view class="q-title">{{item.title}}</view>
+        <view class="q-content">{{item.content}}</view>
+        <view class="q-info">
+          <view class="author-info">
+            <image src="{{item.avatar}}" class="avatar"></image>
+            <text class="author-name">{{item.author}}</text>
+          </view>
+          <view class="stats">
+            <text class="status {{item.solved ? 'solved' : 'unsolved'}}">{{item.solved ? '已解决' : '未解决'}}</text>
+            <text>{{item.answerCount}} 回答</text>
+            <text>{{item.viewCount}} 浏览</text>
+          </view>
+        </view>
+      </view>
+    </block>
+  </view>
+  
+  <view class="loading" wx:if="{{isLoading}}">加载中...</view>
+</view>

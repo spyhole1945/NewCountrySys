@@ -15,10 +15,10 @@ Page({
         });
     },
 
-    // 跳转到赶集
-    goToMarket() {
-        wx.switchTab({
-            url: '/pages/market/market'
+    // 跳转到村友圈
+    goToSocial() {
+        wx.navigateTo({
+            url: '/pages/social/index'
         });
     },
 

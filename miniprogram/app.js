@@ -3,13 +3,13 @@ App({
   globalData: {
     userInfo: null,
     token: null,
-    apiBaseUrl: 'http://localhost:8080' // 开发环境，生产环境需要修改
+    apiBaseUrl: 'http://192.168.0.107:8080' // 开发环境，生产环境需要修改
   },
 
   onLaunch() {
     // 小程序启动时执行
     console.log('乡村同行小程序启动');
-    
+
     // 检查本地存储的token
     const token = wx.getStorageSync('token');
     if (token) {

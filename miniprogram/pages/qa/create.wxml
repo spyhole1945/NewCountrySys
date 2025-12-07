@@ -1,0 +1,31 @@
+<!--pages/qa/create.wxml-->
+<view class="container">
+  <view class="form-group">
+    <view class="label">问题标题</view>
+    <input class="input" placeholder="一句话描述您的问题" bindinput="onInputTitle" value="{{title}}" maxlength="50" />
+  </view>
+
+  <view class="form-group">
+    <view class="label">详细描述</view>
+    <textarea class="textarea" placeholder="请详细描述作物症状、发病时间等信息..." bindinput="onInputContent" value="{{content}}" maxlength="500" />
+  </view>
+
+  <view class="form-group">
+    <view class="label">添加图片 ({{images.length}}/3)</view>
+    <view class="image-list">
+      <block wx:for="{{images}}" wx:key="*this">
+        <view class="image-item">
+          <image src="{{item}}" mode="aspectFill"></image>
+          <view class="delete-btn" catchtap="removeImage" data-index="{{index}}">×</view>
+        </view>
+      </block>
+      <view class="add-btn" bindtap="chooseImage" wx:if="{{images.length < 3}}">
+        <text class="plus">+</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="submit-btn-wrapper">
+    <button class="submit-btn" bindtap="submitQuestion" disabled="{{isSubmitting}}">发布问题</button>
+  </view>
+</view>
